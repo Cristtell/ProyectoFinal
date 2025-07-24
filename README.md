@@ -8,3 +8,5 @@
     Esta Segunda version exploramos mas las diferentes librerias de Ursina y mostramos otra perspectiva del juego 
     buscando un plano 3D, tomando una orientacion sobre el juego Duck Hunt, donde se toma la perspectiva en primera persona y los objetivos se van movilizando de un lado a otro, mientras que el jugador debe acertar a los objetivos, en esta version ya se implementa el sistema de niveles y el de dificultad, donde la velocidad varia segun la antes mencionada, los modelos aun estan proceso de diseño, aunque aun presentamos algunos defectos en la interfas del juego ya vamos tomando la idea de lo que queremos implementar para el final del juego.
 
+3---9/07/2025
+    En esta tercera version del juego se puede observar la mejora del entorno del juego y la solucion del probelma que se presentaba donde aparecia la puntuacion y los aciertos del jugador ya ahora aparecen en la parte superior de la pantalla, de igual forma se implemento el boton de reitentar y la opcion del siguiente nivel, y el de salir que antes no funsionaba, de igual foma se le cambio el nombre del juego paso de ser "Guardianes del Blanco" a "AIM PRECISION DDC".
