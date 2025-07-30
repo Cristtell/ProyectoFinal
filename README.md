@@ -13,3 +13,6 @@
 
 4---16/07/2025
     En esta cuarta version del juego se puede obsevar una gran mejora en el juego en los aspectos visuales se incorporo un logo, se agrgaron nuevas texturas para el entorno del juego, como ser las paredes de la cabina, el cielo y el suelo del mismo, se agrego musica de fondo y el sonido al moento de disparar, de igual forma se agrego un panel con los botones de reanurar juego, el menu de niveles, y el boton de salir al menu principal que es donde se encuentra en boton de inicio y de salir del juego.
+
+5---24/07/2025
+    En esta quinta version del juego se cambio el logo princiapal del juego a una version mas colorida, de igual forma se cambio la posicion de los botones del menu principal y al menu de los niveles, se les cambio el aspecto agregandole colores mas llamativos y implementando que cambie de color al pasar el cursor, se les agrego una textura para que tuvieran otro aspecto, tambien se cambio el objeto del blanco de ser circulos a ser un mario, se le coloco un efecto al objeto ala hora que se le distara, se le agrego diferentes sonidos a los niveles segun el nivel de dificultad, se le cambio el aspecto a las armas para que se vieran mejor tratando de que se visualicen mejor.
