@@ -16,3 +16,6 @@
 
 5---24/07/2025
     En esta quinta version del juego se cambio el logo princiapal del juego a una version mas colorida, de igual forma se cambio la posicion de los botones del menu principal y al menu de los niveles, se les cambio el aspecto agregandole colores mas llamativos y implementando que cambie de color al pasar el cursor, se les agrego una textura para que tuvieran otro aspecto, tambien se cambio el objeto del blanco de ser circulos a ser un mario, se le coloco un efecto al objeto ala hora que se le distara, se le agrego diferentes sonidos a los niveles segun el nivel de dificultad, se le cambio el aspecto a las armas para que se vieran mejor tratando de que se visualicen mejor.
+
+6---30/07/2025
+    En esta sexta version del juego trate de modificar el logo para que tuviera una mejor perspectiva y no se viera con un aspecto como alargado para abarcar la pantalla, intente colocarle un fondo blanco mediante codigo pero solo me aparecia al iniciar el juego, cuando pausaba al juego y regresaba al menu principal ya no me aparecia el fondo blanco detras del logo principal.
