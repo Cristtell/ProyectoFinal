@@ -190,29 +190,102 @@ def end_level():
     accuracy = (hits / shots_fired) * 100 if shots_fired > 0 else 0
     goal = LEVEL_CONFIG.get(current_level, {}).get('accuracy_goal', 0)
 
+
+#-----//////////MOSTRAR LOS RESULTADOS////////-----
       # Crea un panel de fin de nivel para mostrar los resultados.
-    end_panel = Entity(parent=camera.ui, model='quad', scale=(.8, .5), color=color.dark_gray.tint(.2), z=1)
-    Text(parent=end_panel, text=f"Precisión: {accuracy:.1f}% (Objetivo: {goal}%)", origin=(0,0), y=0, scale=1.5)
-    Text(parent=end_panel, text=f"Aciertos: {hits} / {shots_fired}", origin=(0,0), y=-.1, scale=1.5)
+    end_panel = Entity(parent=camera.ui, model='quad', scale=(.8, .7), color=color.white.tint(.2), z=1)
+    Text(
+        parent=end_panel, 
+        text=f"Precisión: {accuracy:.1f}% (Objetivo: {goal}%)", 
+        color=color.black, 
+        origin=(0,0), 
+        y=0, 
+        scale=1.9,
+        font='assets/fonts/CenturyGothicBold.ttf'
+        )
+    Text(
+        parent=end_panel, 
+        text=f"Aciertos: {hits} / {shots_fired}", 
+        color=color.black, 
+        origin=(0,0), 
+        y=-.1, 
+        scale=1.9,
+        font='assets/fonts/CenturyGothicBold.ttf'
+        )
 
     # Lógica para cuando el nivel es completado con éxito.
     if accuracy >= goal:
-        message = f"¡NIVEL {current_level} COMPLETADO!"
+        message = f" NIVEL {current_level} COMPLETADO "
+        
         if current_level < len(LEVEL_CONFIG): # Si no es el último nivel, desbloquea el siguiente.
             unlocked_level = max(unlocked_level, current_level + 1) # Asegura que se desbloquee el nivel más alto.
 
-        Text(parent=end_panel, text=message, origin=(0,0), y=.2, scale=2)
-        Button(parent=end_panel, text="Menú de Niveles", color=color.azure, scale=(0.25, 0.08), y=-.3, on_click=Func(lambda:
+        Text(
+            parent=end_panel, 
+            text=message, 
+            color=color.black, 
+            origin=(0,0), 
+            y=.2, 
+            scale=3,
+            font='assets/fonts/keetano_katana.ttf'
+            )
+        Button(
+            parent=end_panel, 
+            text="Menú de Niveles", 
+            highlight_color=color.orange,
+            pressed_color=color.yellow,
+            color=color.red, 
+            scale=(0.40, 0.15), 
+            y=-.3,
+            text_color=color.white,
+            font='assets/fonts/CenturyGothicBold.ttf', 
+            texture='assets/textures/button_menu.jpg',
+            model='quad',
+            radius=0.18,
+            on_click=Func(lambda:
         (destroy(end_panel), show_level_select_menu()))) # Botón para ir al menú de niveles.
 
     # Lógica para cuando el nivel no es completado (precisión insuficiente).
     else:
-        message = "INTÉNTALO DE NUEVO"
-
-        Text(parent=end_panel, text=message, origin=(0,0), y=.2, scale=2)
-        Button(parent=end_panel, text="Reintentar", color=color.azure, scale=(0.25, 0.08), y=-.25, on_click=Func(lambda:
+        message = "INTENTALO DE NUEVO"
+        Text(
+            parent=end_panel, 
+            text=message,
+            color=color.black, 
+            origin=(0,0), 
+            y=.2, 
+            scale=3,
+            font='assets/fonts/keetano_katana.ttf'
+            )
+        Button(
+            parent=end_panel, 
+            text="Reintentar", 
+            highlight_color=color.orange,
+            pressed_color=color.yellow,
+            color=color.red, 
+            scale=(0.35, 0.12), 
+            y=-.25, 
+            text_color=color.white,
+            font='assets/fonts/CenturyGothicBold.ttf', 
+            texture='assets/textures/button_rententar.jpg',
+            model='quad',
+            radius=0.18,
+            on_click=Func(lambda:
         (destroy(end_panel), start_level(current_level)))) # Botón para reintentar el nivel.
-        Button(parent=end_panel, text="Menú de Niveles", color=color.red, scale=(0.25, 0.08), y=-.4, on_click=Func(lambda:
+        Button(
+            parent=end_panel, 
+            text="Menú de Niveles", 
+            highlight_color=color.orange,
+            pressed_color=color.yellow,
+            color=color.red, 
+            scale=(0.35, 0.12), 
+            text_color=color.white,
+            font='assets/fonts/CenturyGothicBold.ttf', 
+            texture='assets/textures/button_menu.jpg',
+            model='quad',
+            radius=0.18,
+            y=-.4, 
+            on_click=Func(lambda:
         (destroy(end_panel), show_level_select_menu()))) # Botón para volver al menú de niveles.
 
 # Función para mostrar el menú de selección de nivel.
@@ -385,6 +458,8 @@ invoke(set_debug_text_color, delay=0.1)
 gunshot_sound = Audio('assets/sounds/gunshot.mp3', loop=False, autoplay=False, volume=0.3) # Asegúrate de tener este archivo
 hit_sound = Audio('assets/sounds/hit.mp3', loop=False, autoplay=False, volume=0.5)
 
+
+#-------////////// INTERFAS DEL JUEGO//////////--------
 # --- Creación del Entorno (Cabina de Disparo con estilo oscuro) ---
 # Entidad para el fondo general, que no se usa directamente en la cabina de disparo actual (deshabilitado).
 shooting_range_background = Entity(
@@ -410,7 +485,7 @@ back_wall = Entity(# Crea una nueva entidad (un objeto en la escena) y la asigna
 # Pared izquierda del escenario.
 left_wall = Entity(
     model='cube',
-    scale=(1, 30, 60), # Ancho: 1, Alto: 30, Profundidad: 60 (cubre el rango Z).
+    scale=(2, 30, 60), # Ancho: 1, Alto: 30, Profundidad: 60 (cubre el rango Z).
     position=(-20, 15, 7.5), # Posición X ajustada a -20 (izquierda), Y=15 para que la base esté en y=0.
     texture='assets/textures/mapa4.png', # Textura aplicada a la pared izquierda.
     color=color.white, # Asegura que la textura se vea
@@ -420,7 +495,7 @@ left_wall = Entity(
 # Pared derecha del escenario.
 right_wall = Entity(
     model='cube',
-    scale=(1, 30, 60), # Ancho: 1, Alto: 30, Profundidad: 60.
+    scale=(2, 30, 60), # Ancho: 1, Alto: 30, Profundidad: 60.
     position=(20, 15, 7.5), # Posición X ajustada a 20 (derecha), Y=15 para que la base esté en y=0.
     texture='assets/textures/mapa4.png', # Textura aplicada a la pared derecha.
     color=color.white, # Asegura que la textura se vea
@@ -548,6 +623,7 @@ main_menu = Entity(
     color=color.white # Color blanco para mostrar la textura sin tintes.
 )
 
+#------/////////// BOTONES DEL JUEGO ////////////---------
 # Los botones ya NO son hijos de main_menu, son hijos de camera.ui directamente
 # para poder posicionarlos independientemente sobre el logo que ocupa toda la pantalla.
 start_button = Button( # Botón "INICIAR" en el menú principal.
@@ -562,7 +638,7 @@ start_button = Button( # Botón "INICIAR" en el menú principal.
     text_origin=(0,0), # Origen del texto en el centro del botón.
     text_color=color.white, # Color del texto del botón.
     model='quad', # Modelo del botón, un plano 2D.
-    radius=0.15, # Radio para bordes redondeados.
+    radius=0.18, # Radio para bordes redondeados.
     texture='assets/textures/button_start.jpg', # Usa una textura personalizada si tienes una
     on_click=go_to_level_select, # Acción al hacer clic, va al menú de selección de nivel.
     z=-0.1 # Un valor Z ligeramente superior para asegurar que esté delante de otros elementos.
@@ -581,7 +657,7 @@ quit_button = Button( # Botón "SALIR" en el menú principal.
     text_origin=(0,0), # Origen del texto en el centro del botón.
     text_color=color.white, # Color del texto del botón.
     model='quad', # Modelo del botón, un plano 2D.
-    radius=0.15, # Radio para bordes redondeados.
+    radius=0.18, # Radio para bordes redondeados.
     texture='assets/textures/button_quit.jpg', # Usa una textura personalizada si tienes una
     on_click=application.quit, # Acción al hacer clic, cierra la aplicación.
     z=-0.1 # Un valor Z ligeramente superior para asegurar que esté delante de otros elementos.
@@ -591,14 +667,22 @@ quit_button = Button( # Botón "SALIR" en el menú principal.
 
 # --- Menú de Selección de Nivel ---
 level_select_menu = Entity(parent=camera.ui, enabled=False) # Entidad para el menú de selección de nivel, deshabilitada por defecto.
-level_title = Text(parent=level_select_menu, text="Seleccionar Nivel", scale=3, origin=(0,0), y=0.4, color=color.white) # Título del menú.
+level_title = Text(
+    parent=level_select_menu, 
+    text="Seleccionar Nivel", 
+    scale=4, 
+    origin=(0,0), 
+    y=0.3, 
+    color=color.white,
+    font='assets/fonts/keetano_katana.ttf'
+    ) # Título del menú.
 
 level_1_button = Button( #Boton para el Nivel 1.
     parent=level_select_menu, 
     text="Nivel 1", # Texto del botón.
     scale=(0.35, 0.12), # Escala del botón.
     y=0.13, # Posición Y del botón (arriba).
-    color=color.red, # Color del botón.
+    color=color.azure, # Color del botón.
     highlight_color=color.cyan, # Color al pasar el ratón por encima.
     pressed_color=color.lime, # Color al presionar el botón.
     text_color=color.white,  # Color del texto del botón.
@@ -613,9 +697,9 @@ level_2_button = Button(# Botón para el Nivel 2.
     text="Nivel 2", # Texto del botón.
     scale=(0.35, 0.12), # Escala del botón.
     y=-0.01, # Posición Y del botón (casi al centro).
-    color=color.red, # Color del botón.
+    color=color.azure, # Color del botón.
     highlight_color=color.cyan, # Color al pasar el ratón por encima.
-    pressed_color=color.azure, # Color al presionar el botón.
+    pressed_color=color.lime, # Color al presionar el botón.
     text_color=color.white, # Color del texto del botón.
     model='quad', # Modelo del botón, un plano 2D.
     radius=0.18, # Radio para bordes redondeados.
@@ -628,9 +712,9 @@ level_3_button = Button( # Botón para el Nivel 3.
     text="Nivel 3", # Texto del botón.
     scale=(0.35, 0.12), # Escala del botón.
     y=-0.15, # Cambiado para que aparezca debajo del botón 2
-    color=color.red, # Color del botón.
+    color=color.azure, # Color del botón.
     highlight_color=color.cyan, # Color al pasar el ratón por encima.
-    pressed_color=color.orange, # Color al presionar el botón.
+    pressed_color=color.lime, # Color al presionar el botón.
     text_color=color.white, # Color del texto del botón.
     model='quad', # Modelo del botón, un plano 2D.
     radius=0.18, # Radio para bordes redondeados.
@@ -647,28 +731,40 @@ back_to_main_menu_button = Button(
     text="Volver al Menú Principal",
     scale=(0.35, 0.12),
     y=-0.35, # Posición debajo de los botones de nivel
-    color=color.gray,
+    color=color.red,
     highlight_color=color.cyan,
     pressed_color=color.orange,
     text_color=color.white,
     model='quad',
     radius=0.18,
+    texture='assets/textures/button_menu.jpg',
     on_click=show_main_menu
 )
-
+#-----/////////////---
 # --- Menú de Pausa ---
 pause_menu = Entity(parent=camera.ui, enabled=False) # Entidad para el menú de pausa, deshabilitada por defecto.
-pause_background = Entity(parent=pause_menu, model='quad', scale=(.6, .6), color=color.black66, z=1) # Fondo semitransparente.
-pause_text = Text(parent=pause_menu, text="PAUSA", scale=3, origin=(0,0), y=0.2, z=-0.1, color=color.white) # Título de pausa.
+pause_background = Entity(parent=pause_menu, model='quad', scale=(.6, .6), color=color.white, z=1) # Fondo semitransparente.
+pause_text = Text(
+    parent=pause_menu, 
+    text="PAUSA", 
+    scale=4, 
+    origin=(0,0), 
+    y=0.2, 
+    z=-0.1, 
+    color=color.black,
+    font='assets/fonts/keetano_katana.ttf'
+    ) # Título de pausa.
 
 resume_button = Button(
     parent=pause_menu,
     text="Reanudar",
     scale=(0.3, 0.1),
     y=0,
+    radius=0.18,
     color=color.azure,
     highlight_color=color.cyan,
     pressed_color=color.lime,
+    texture='assets/textures/button_reanudar.jpg',
     on_click=resume_game
 )
 
@@ -677,9 +773,11 @@ quit_to_main_button = Button(
     text="Salir al Menú Principal",
     scale=(0.3, 0.1),
     y=-0.15,
+    radius=0.18,
     color=color.red,
     highlight_color=color.orange,
     pressed_color=color.yellow,
+    texture='assets/textures/button_menu.jpg',
     on_click=show_main_menu
 )
 

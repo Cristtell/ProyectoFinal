@@ -22,3 +22,6 @@
 
 7---31/07/2025
     En esta septima version cambie el fondo blanco que habia colocado mediante codigo a implementarlo directamente en la imagen del logo del juego, dejando un mejor aspecto al inicio del juego, de igual forma cambie la interfas del juego colocando un fondo mas agradable para la vista, cambie el cielo o parte superior del juego, al igual que la parte inferior que simula el suelo, cambie el objeto del blanco paso de ser un mario a un ovni para que combinara con el fondo del juego.
+
+8---31/07/2025
+    En esta Octava Version cambie la apariencia de los botones del menu de niveles cambiandoles el color y los botones que aparecen en el panel del resultado, de igual forma cambie la apariencia de los paneles en lo visual y el tamaño de ellos y de los botones de reinentar y de volver al menu de niveles, de igual forma les agrege color y textura a cada uno y cambie la apariencia de la letra de los titulos del juego como ser "SELECCIONAR NIVEL ", "NIVEL COMPLETADO", "INTENTALO DE NUEVO", como apariencia del la letra donde se muestra el porcentaje de presicion, cual es el objetivo que tenia que alcanzar y los aciertos que completo eso mediante fuentes externas descargadas y implementadas dentro del codigo.
