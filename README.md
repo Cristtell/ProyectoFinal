@@ -19,3 +19,6 @@
 
 6---30/07/2025
     En esta sexta version del juego trate de modificar el logo para que tuviera una mejor perspectiva y no se viera con un aspecto como alargado para abarcar la pantalla, intente colocarle un fondo blanco mediante codigo pero solo me aparecia al iniciar el juego, cuando pausaba al juego y regresaba al menu principal ya no me aparecia el fondo blanco detras del logo principal.
+
+7---31/07/2025
+    En esta septima version cambie el fondo blanco que habia colocado mediante codigo a implementarlo directamente en la imagen del logo del juego, dejando un mejor aspecto al inicio del juego, de igual forma cambie la interfas del juego colocando un fondo mas agradable para la vista, cambie el cielo o parte superior del juego, al igual que la parte inferior que simula el suelo, cambie el objeto del blanco paso de ser un mario a un ovni para que combinara con el fondo del juego.

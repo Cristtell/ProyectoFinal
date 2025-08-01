@@ -18,20 +18,21 @@ LEVEL_CONFIG = {
 # Define una clase para los objetivos que el jugador debe disparar. Hereda de 'Entity' de Ursina.
 
 class TargetSphere(Entity):# Constructor de la clase TargetSphere.
-    def __init__(self, speed_range, scale): # Recibe speed_range (rango de velocidad) y scale (escala del objetivo) como argumentos
+    def __init__(self, speed_range, scale ): # Recibe speed_range (rango de velocidad) y scale (escala del objetivo) como argumentos
         side = random.choice([-1, 1]) # Elige aleatoriamente si el objetivo aparecerá desde la izquierda (-1) o derecha (1).
         # Posición Y ajustada para que salgan más bajas, ahora relativa al nuevo suelo en y=0
         start_pos = Vec3(22 * side, random.uniform(2, 8), random.uniform(15, 25)) # Ajustada para que salgan por encima del suelo
         # (entre 2 y 8 en el eje Y), X: 22 * side (extremo de la pantalla), Y: aleatorio en el rango, Z: aleatorio para la profundidad.
         direction = Vec3(-side, random.uniform(-.2, .2), random.uniform(-.1, .1)) # Dirección de movimiento del objetivo.
         # X: hacia el centro (-side), Y: un poco hacia arriba o abajo, Z: un poco hacia adelante o atrás.
+        
 
 
         super().__init__(# Llama al constructor de la clase base (Entity) para inicializar el objeto visual.
             model='quad', # ¡CAMBIADO A 'quad' para usar una imagen 2D! Un 'quad' es un plano de dos triángulos.
-            texture='assets/textures/mario.png', # ¡AQUÍ ES DONDE PONES LA RUTA A TU IMAGEN DE MARIO! La textura que se aplicará al 'quad'.
+            texture='assets/textures/ovni.png', # ¡AQUÍ ES DONDE PONES LA RUTA A TU IMAGEN DE MARIO! La textura que se aplicará al 'quad'.
             color=color.white, # Usa color.white para que la textura no se tiña. Permite que la textura muestre sus colores originales.
-            scale=scale, # Establece el tamaño del mario.
+            scale=4, # Establece el tamaño del mario.
             position=start_pos, # Establece la posición inicial del mario
             collider='box',# Cambiamos a 'box' o 'quad' porque ya no es una esfera. 'box' es una buena opción general para colisiones 2D.
             shadow=True, # El mario proyectará una sombra.
@@ -401,7 +402,7 @@ back_wall = Entity(# Crea una nueva entidad (un objeto en la escena) y la asigna
     model='cube', # Define la forma de la entidad. En este caso, es un cubo.
     scale=(40, 30, 1), # Ancho: 40 unidades, Alto: 30, Profundidad: 1.
     position=(0, 15, 30), # Ubicación central: X=0, Y=15 (centro de la pared, para que la base esté en y=0), Z=30.
-    texture='assets/textures/mapa.png', # Textura aplicada a la pared.
+    texture='assets/textures/mapa4.png', # Textura aplicada a la pared.
     color=color.white, # Cambiado a blanco para que la textura se vea sin tintes de color.
     collider='box' # Asigna un colisionador de tipo caja para interacciones físicas.
 )
@@ -411,7 +412,7 @@ left_wall = Entity(
     model='cube',
     scale=(1, 30, 60), # Ancho: 1, Alto: 30, Profundidad: 60 (cubre el rango Z).
     position=(-20, 15, 7.5), # Posición X ajustada a -20 (izquierda), Y=15 para que la base esté en y=0.
-    texture='assets/textures/mapa.png', # Textura aplicada a la pared izquierda.
+    texture='assets/textures/mapa4.png', # Textura aplicada a la pared izquierda.
     color=color.white, # Asegura que la textura se vea
     collider='box'
 )
@@ -421,7 +422,7 @@ right_wall = Entity(
     model='cube',
     scale=(1, 30, 60), # Ancho: 1, Alto: 30, Profundidad: 60.
     position=(20, 15, 7.5), # Posición X ajustada a 20 (derecha), Y=15 para que la base esté en y=0.
-    texture='assets/textures/mapa.png', # Textura aplicada a la pared derecha.
+    texture='assets/textures/mapa4.png', # Textura aplicada a la pared derecha.
     color=color.white, # Asegura que la textura se vea
     collider='box'
 )
@@ -431,7 +432,7 @@ ceiling = Entity(
     model='cube',
     scale=(42, 1, 45), # ANCHO AJUSTADO: Ahora es 42 para cubrir el espacio de 40 de la pared trasera y un poco más.
     position=(0, 30, 7.5), # Posición X=0 (centrado), Y=30 (altura del techo, encima de las paredes), Z=7.5 (posición Z central).
-    texture='assets/textures/cieloo.png', # Textura del cielo (asumiendo que 'cieloo.png' es la versión oscura).
+    texture='assets/textures/cielo.jpg', # Textura del cielo (asumiendo que 'cieloo.png' es la versión oscura).
     color=color.white, # Asegura que la textura se vea
     collider='box'
 )
@@ -441,7 +442,7 @@ ground_plane = Entity(
     model='plane', # Un plano es una superficie plana.
     scale=(150, 1, 150), # Un tamaño muy grande para asegurar que siempre haya suelo
     position=(0, 0, 5), # ¡CAMBIADO! Posición Y ahora en 0, que es la base del mundo.
-    texture='assets/textures/piso.png', # Cambiado a una textura de cesped oscuro.
+    texture='assets/textures/cesped.png', # Cambiado a una textura de cesped oscuro.
     texture_scale=(2, 2), # Escala de la textura para que se vea más grande y cercano.
     collider='box'
 )
@@ -539,8 +540,8 @@ fondo_blanco = Entity(
 main_menu = Entity(
     parent=camera.ui, # Es hijo de la UI de la cámara para que siempre se vea en pantalla.
     model='quad', # Es un plano 2D.
-    texture='assets/textures/logo.png', # Asegúrate que esta textura exista
-    scale=(window.aspect_ratio * 0.6, 1), # Escala para cubrir la pantalla completa. Puedes ajustar 1.4 si ves bordes.
+    texture='assets/textures/logo3.png', # Asegúrate que esta textura exista
+    scale=(window.aspect_ratio * 1, 1), # Escala para cubrir la pantalla completa. Puedes ajustar 1.4 si ves bordes.
     position=(0,0, 0), # Centrado en la pantalla
     enabled=True, # Habilitado por defecto al iniciar el juego.
     z=-0.1, # Un valor Z ligeramente superior para asegurar que esté delante de otros elementos.
@@ -590,7 +591,7 @@ quit_button = Button( # Botón "SALIR" en el menú principal.
 
 # --- Menú de Selección de Nivel ---
 level_select_menu = Entity(parent=camera.ui, enabled=False) # Entidad para el menú de selección de nivel, deshabilitada por defecto.
-level_title = Text(parent=level_select_menu, text="Seleccionar Nivel", scale=3, origin=(0,0), y=0.4, color=color.black) # Título del menú.
+level_title = Text(parent=level_select_menu, text="Seleccionar Nivel", scale=3, origin=(0,0), y=0.4, color=color.white) # Título del menú.
 
 level_1_button = Button( #Boton para el Nivel 1.
     parent=level_select_menu, 
@@ -658,7 +659,7 @@ back_to_main_menu_button = Button(
 # --- Menú de Pausa ---
 pause_menu = Entity(parent=camera.ui, enabled=False) # Entidad para el menú de pausa, deshabilitada por defecto.
 pause_background = Entity(parent=pause_menu, model='quad', scale=(.6, .6), color=color.black66, z=1) # Fondo semitransparente.
-pause_text = Text(parent=pause_menu, text="PAUSA", scale=3, origin=(0,0), y=0.2, z=-0.1, color=color.black ) # Título de pausa.
+pause_text = Text(parent=pause_menu, text="PAUSA", scale=3, origin=(0,0), y=0.2, z=-0.1, color=color.white) # Título de pausa.
 
 resume_button = Button(
     parent=pause_menu,
