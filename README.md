@@ -25,3 +25,6 @@
 
 8---31/07/2025
     En esta Octava Version cambie la apariencia de los botones del menu de niveles cambiandoles el color y los botones que aparecen en el panel del resultado, de igual forma cambie la apariencia de los paneles en lo visual y el tamaño de ellos y de los botones de reinentar y de volver al menu de niveles, de igual forma les agrege color y textura a cada uno y cambie la apariencia de la letra de los titulos del juego como ser "SELECCIONAR NIVEL ", "NIVEL COMPLETADO", "INTENTALO DE NUEVO", como apariencia del la letra donde se muestra el porcentaje de presicion, cual es el objetivo que tenia que alcanzar y los aciertos que completo eso mediante fuentes externas descargadas y implementadas dentro del codigo.
+
+9---03/08/2025
+    Esta Novena version cambie la apariencia de las 2 primeras armas ya que presentaba el problemas de las texturas, descubri que mi codigo no cargaba los modelos de las armas, sino que los modelos eran estructuras como de cubos o partes como un aspecto de minecraft, lo que hice fue cargar imagnes como textura en las partes principales de la armas y modificar el aspecto de la arma mediante el Scale y position, que son la posicion del arma y que tamaño tiene cada pieza del arma asi mejorando el aspecto del arma para que se vea mejor.

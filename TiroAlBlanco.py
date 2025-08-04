@@ -88,7 +88,6 @@ def go_to_level_select(): # Función para cambiar al menú de selección de nive
     main_menu.disable() # Deshabilita el menú principal.
     start_button.disable() # Deshabilita el botón de inicio.
     quit_button.disable() # Deshabilita el botón de salir.
-    fondo_blanco.disable() # Deshabilita el fondo blanco.
     level_select_menu.enable() # Habilita el menú de selección de nivel.
     update_level_buttons() # Actualiza el estado de los botones de nivel (desbloqueados/bloqueados).
 
@@ -139,10 +138,13 @@ def start_level(level): # Función para iniciar un nivel específico.
     shotgun.disable()
 
     if current_level == 1:
+        gunshot_pistol_sound.play()
         pistol.enable()
     elif current_level == 2:
+        gunshot_rifle_sound.play()
         rifle.enable()
     elif current_level == 3:
+        gunshot_shotgun_sound.play()
         shotgun.enable()
 
     # Destruye cualquier objetivo que pueda haber quedado de una partida anterior.
@@ -389,7 +391,7 @@ def pause_game():
 
 # --- Funciones de Eventos de Ursina ---
 def input(key): # Función que se llama automáticamente cuando se presiona una tecla o botón del ratón.
-    global shots_fired, last_shot_time
+    global shots_fired, last_shot_time 
     if key == 'left mouse down' and game_active: # Si se hace clic izquierdo y el juego está activo.
         current_time = time.time()
         # Control de cadencia de fuego según el arma activa
@@ -400,7 +402,6 @@ def input(key): # Función que se llama automáticamente cuando se presiona una 
             fire_rate = 0.8 # Más lento por el "poder"
 
         if (current_time - last_shot_time) > fire_rate:
-            gunshot_sound.play() # Reproduce el sonido de disparo.
             shots_fired += 1 # Incrementa el contador de disparos.
             update_hud() # Actualiza el HUD.
             last_shot_time = current_time # Actualiza el tiempo del último disparo.
@@ -455,7 +456,9 @@ invoke(set_debug_text_color, delay=0.1)
 
 
 # --- Sonidos ---
-gunshot_sound = Audio('assets/sounds/gunshot.mp3', loop=False, autoplay=False, volume=0.3) # Asegúrate de tener este archivo
+gunshot_pistol_sound = Audio('assets/sounds/sonidoArma1.mp3', loop=False, autoplay=False, volume=1.0)
+gunshot_rifle_sound = Audio('assets/sounds/sonidoRifle.mp3', loop=False, autoplay=False, volume=0.5)
+gunshot_shotgun_sound = Audio('assets/sounds/sonidoEscopeta.mp3', loop=False, autoplay=False, volume=3.0) 
 hit_sound = Audio('assets/sounds/hit.mp3', loop=False, autoplay=False, volume=0.5)
 
 
@@ -541,42 +544,42 @@ camera.fov = 80 # Campo de visión de la cámara.
 
 # Pistola mejorada
 # La entidad 'pistol' ahora solo actúa como un contenedor para sus partes (modelos más pequeños que la componen).
-pistol = Entity(parent=None, position=(0.4, -0.45, 1.2), rotation=(0, 0, 0)) # Parent se asignará en start_level
-Entity(parent=pistol, model='cube', scale=(0.12, 0.2, 0.6), texture='assets/textures/pistol_body.png', color=color.black) # Cuerpo principal de la pistola.
-Entity(parent=pistol, model='cube', scale=(0.12, 0.3, 0.2), position=(0, -0.2, -0.2), texture='assets/textures/pistol_grip.png', color=color.white) # Empuñadura de la pistola.
-Entity(parent=pistol, model='cube', scale=(0.1, 0.15, 0.55), position=(0, 0.07, 0), texture='assets/textures/pistol_slide.png', color=color.black) # Corredera de la pistola.
-Entity(parent=pistol, model='cube', scale=(0.05, 0.05, 0.1), position=(0, 0.07, 0.3), texture='assets/textures/pistol_barrel.png', color=color.white) # Cañón asomando.
-Entity(parent=pistol, model='cube', scale=(0.04, 0.08, 0.05), position=(0, -0.07, -0.1), texture='assets/textures/pistol_trigger.png', color=color.white) # Gatillo de la pistola.
-Entity(parent=pistol, model='cube', scale=(0.02, 0.02, 0.05), position=(0, 0.15, 0.25), texture='assets/textures/pistol_sight_front.png', color=color.red) # Miras de la pistola (delantera).
-Entity(parent=pistol, model='cube', scale=(0.05, 0.02, 0.05), position=(0, 0.15, -0.25), texture='assets/textures/pistol_sight_rear.png', color=color.yellow) # Miras de la pistola (trasera).
+pistol = Entity(parent=None, position=(0.4, -0.43, 1.2), rotation=(0, 0, 0)) # Parent se asignará en start_level
+Entity(parent=pistol, model='cube', scale=(0.11, 0.1, 0.6), texture='assets/textures/body.jpg', color=color.blue) # Cuerpo principal de la pistola.
+Entity(parent=pistol, model='cube', scale=(0.12, 0.2, 0.2), position=(0, -0.2, -0.2), texture='assets/textures/pistol_grip.png', color=color.black) # Empuñadura de la pistola.
+Entity(parent=pistol, model='cube', scale=(0.1, 0.13, 0.55), position=(0, 0.04, 0), texture='assets/textures/prueba.jpg', color=color.blue) # Corredera de la pistola.
+Entity(parent=pistol, model='cube', scale=(0.05, 0.05, 0.1), position=(0, 0.07, 0.3), texture='assets/textures/pistol_barrel.png', color=color.black) # Cañón asomando.
+Entity(parent=pistol, model='cube', scale=(0.04, 0.08, 0.05), position=(0, -0.07, -0.1), texture='assets/textures/pistol_trigger.png', color=color.black) # Gatillo de la pistola.
+Entity(parent=pistol, model='cube', scale=(0.02, 0.02, 0.05), position=(0, 0.11, 0.25), texture='assets/textures/pistol_sight_front.png', color=color.red) # Miras de la pistola (delantera).
+Entity(parent=pistol, model='cube', scale=(0.04, 0.02, 0.04), position=(0, 0.12, -0.25), texture='assets/textures/pistol_sight_rear.png', color=color.red) # Miras de la pistola (trasera).
 pistol.disable() # La pistola está deshabilitada por defecto al inicio.
 
 
 # Rifle mejorado
 # La entidad 'rifle' ahora solo actúa como un contenedor.
 rifle = Entity(parent=None, position=(0.6, -0.55, 1.8), rotation=(0,0,0)) # Parent se asignará en start_level
-Entity(parent=rifle, model='cube', scale=(0.1, 0.1, 1.2), texture='assets/textures/rifle_body.png', color=color.black) # Cuerpo principal / Receptor del rifle.
+Entity(parent=rifle, model='cube', scale=(0.1, 0.1, 1.2), texture='assets/textures/GUN_Material.003_BaseColor.jpg', color=color.red) # Cuerpo principal / Receptor del rifle.
 Entity(parent=rifle, model='cylinder', scale=(0.05, 0.05, 0.8), position=(0, 0, 0.6), rotation_x=90, texture='assets/textures/rifle_barrel.png', color=color.black) # Cañón del rifle.
-Entity(parent=rifle, model='cube', scale=(0.1, 0.25, 0.3), position=(0, -0.1, -0.6), texture='assets/textures/rifle_stock.png', color=color.black) # Culata del rifle.
-Entity(parent=rifle, model='cube', scale=(0.08, 0.2, 0.1), position=(0, -0.15, -0.3), texture='assets/textures/rifle_grip.png', color=color.black) # Empuñadura de pistola del rifle.
+Entity(parent=rifle, model='cube', scale=(0.1, 0.25, 0.3), position=(0, -0.1, -0.6), texture='assets/textures/GUN_Material.003_BaseColor.jpg', color=color.red) # Culata del rifle.
+Entity(parent=rifle, model='cube', scale=(0.08, 0.2, 0.1), position=(0, -0.15, -0.3), texture='assets/textures/GUN_Material.003_BaseColor.jpg', color=color.red) # Empuñadura de pistola del rifle.
 Entity(parent=rifle, model='cylinder', scale=(0.05, 0.05, 0.3), position=(0, 0.08, 0.2), rotation_x=90, texture='assets/textures/rifle_scope.png', color=color.yellow) # Mira telescópica del rifle.
-Entity(parent=rifle, model='circle', scale=0.04, position=(0, 0.08, 0.35), rotation_x=90, texture='assets/textures/rifle_scope_lens.png', color=color.red) # Lente de la mira telescópica.
-Entity(parent=rifle, model='cube', scale=(0.02, 0.1, 0.02), position=(-0.05, -0.08, 0.3), texture='assets/textures/rifle_bipod_left.png', color=color.white) # Bípode del rifle (patas).
-Entity(parent=rifle, model='cube', scale=(0.02, 0.1, 0.02), position=(0.05, -0.08, 0.3), texture='assets/textures/rifle_bipod_right.png', color=color.white) # Cargador del rifle.
-Entity(parent=rifle, model='cube', scale=(0.06, 0.2, 0.1), position=(0, -0.1, -0.1), texture='assets/textures/rifle_magazine.png', color=color.white) # Riel Picatinny en la parte superior.
+Entity(parent=rifle, model='circle', scale=0.06, position=(0, 0.08, 0.45), rotation_x=90, texture='assets/textures/rifle_scope_lens.png', color=color.white) # Lente de la mira telescópica.
+Entity(parent=rifle, model='cube', scale=(0.02, 0.1, 0.02), position=(-0.05, -0.08, 0.3), texture='assets/textures/rifle_bipod_left.png', color=color.black) # Bípode del rifle (patas).
+Entity(parent=rifle, model='cube', scale=(0.02, 0.1, 0.02), position=(0.05, -0.08, 0.3), texture='assets/textures/rifle_bipod_right.png', color=color.black) # Cargador del rifle.
+Entity(parent=rifle, model='cube', scale=(0.06, 0.2, 0.1), position=(0, -0.1, -0.1), texture='assets/textures/rifle_magazine.png', color=color.black) # Riel Picatinny en la parte superior.
 Entity(parent=rifle, model='cube', scale=(0.08, 0.01, 0.8), position=(0, 0.06, 0), texture='assets/textures/rifle_rail.png', color=color.black) # Riel Picatinny en la parte inferior.
 rifle.disable() # El rifle está deshabilitado por defecto al inicio.
 
 # Escopeta mejorada
-shotgun = Entity(parent=None, position=(0.5, -0.65, 1.5), rotation=(0,0,0)) # Parent se asignará en start_level
-Entity(parent=shotgun, model='cube', scale=(0.18, 0.15, 1.0), texture='assets/textures/shotgun_body.png', color=color.black) # Cuerpo principal de la escopeta.
+shotgun = Entity(parent=None, position=(0.5, -0.45, 1.5), rotation=(0,0,0)) # Parent se asignará en start_level
+Entity(parent=shotgun, model='cube', scale=(0.13, 0.12, 1.0), texture='assets/textures/Gun_nivel3.jpg', color=color.green) # Cuerpo principal de la escopeta.
 Entity(parent=shotgun, model='cylinder', scale=(0.08, 0.08, 0.8), position=(0, 0, 0.5), rotation_x=90, texture='assets/textures/shotgun_barrel.png', color=color.white) # Cañón de la escopeta.
 Entity(parent=shotgun, model='cube', scale=(0.12, 0.1, 0.25), position=(0, -0.05, 0.2), texture='assets/textures/shotgun_forend.png', color=color.white) # Guardamanos/Bomba de la escopeta.
 Entity(parent=shotgun, model='cube', scale=(0.18, 0.3, 0.15), position=(0, -0.2, -0.4), texture='assets/textures/shotgun_grip_stock.png', color=color.white) # Culata y empuñadura de la escopeta.
-Entity(parent=shotgun, model='cube', scale=(0.18, 0.05, 0.3), position=(0, 0.1, -0.1), texture='assets/textures/shotgun_receiver.png', color=color.yellow) # Recámara o parte superior del cuerpo de la escopeta.
+Entity(parent=shotgun, model='cube', scale=(0.12, 0.05, 0.3), position=(-0.02, 0.1, -0.1), texture='assets/textures/shotgun_receiver.png', color=color.black) # Recámara o parte superior del cuerpo de la escopeta.
 Entity(parent=shotgun, model='cylinder', scale=(0.05, 0.05, 0.7), position=(0, -0.08, 0.3), rotation_x=90, texture='assets/textures/shotgun_magtube.png', color=color.white) # Cargador tubular bajo el cañón de la escopeta.
 Entity(parent=shotgun, model='cube', scale=(0.02, 0.03, 0.05), position=(0, 0.08, 0.45), texture='assets/textures/shotgun_sight_front.png', color=color.red) # Alza y mira delantera de la escopeta.
-Entity(parent=shotgun, model='cube', scale=(0.05, 0.02, 0.05), position=(0, 0.08, -0.2), texture='assets/textures/shotgun_sight_rear.png', color=color.yellow) # Alza y mira trasera de la escopeta.
+Entity(parent=shotgun, model='cube', scale=(0.05, 0.01, 0.05), position=(-0.1, 0.1, -0.4), texture='assets/textures/shotgun_sight_rear.png', color=color.yellow) # Alza y mira trasera de la escopeta.
 shotgun.disable() # La escopeta está deshabilitada por defecto al inicio.
 
 crosshair = Entity(parent=camera.ui, model='circle', scale=0.008, color=color.red) # La mira en el centro de la pantalla.
@@ -601,16 +604,6 @@ scale=1.2 # Tamaño del texto.
 
 # --- Menú Principal ---
 # El logo ahora se escala para ocupar toda la pantalla y se centra.
-
-fondo_blanco = Entity( 
-    parent=camera.ui, 
-    model='quad', 
-    color=color.white, 
-    scale=(window.aspect_ratio * 1.1, 1.1), # ligeramente más grande que el logo 
-    position=(0, 0, 0), 
-    z=0.0, # asegúrate de que esté detrás del logo 
-    enabled=True 
-)
 
 main_menu = Entity(
     parent=camera.ui, # Es hijo de la UI de la cámara para que siempre se vea en pantalla.
