@@ -571,15 +571,15 @@ Entity(parent=rifle, model='cube', scale=(0.08, 0.01, 0.8), position=(0, 0.06, 0
 rifle.disable() # El rifle está deshabilitado por defecto al inicio.
 
 # Escopeta mejorada
-shotgun = Entity(parent=None, position=(0.5, -0.45, 1.5), rotation=(0,0,0)) # Parent se asignará en start_level
-Entity(parent=shotgun, model='cube', scale=(0.13, 0.12, 1.0), texture='assets/textures/Gun_nivel3.jpg', color=color.green) # Cuerpo principal de la escopeta.
+shotgun = Entity(parent=None, position=(0.5, -0.43, 1.5), rotation=(0,0,0)) # Parent se asignará en start_level
+Entity(parent=shotgun, model='cube', scale=(0.11, 0.10, 1.0), texture='assets/textures/prueba.jpg', color=color.green) # Cuerpo principal de la escopeta.
 Entity(parent=shotgun, model='cylinder', scale=(0.08, 0.08, 0.8), position=(0, 0, 0.5), rotation_x=90, texture='assets/textures/shotgun_barrel.png', color=color.white) # Cañón de la escopeta.
-Entity(parent=shotgun, model='cube', scale=(0.12, 0.1, 0.25), position=(0, -0.05, 0.2), texture='assets/textures/shotgun_forend.png', color=color.white) # Guardamanos/Bomba de la escopeta.
-Entity(parent=shotgun, model='cube', scale=(0.18, 0.3, 0.15), position=(0, -0.2, -0.4), texture='assets/textures/shotgun_grip_stock.png', color=color.white) # Culata y empuñadura de la escopeta.
-Entity(parent=shotgun, model='cube', scale=(0.12, 0.05, 0.3), position=(-0.02, 0.1, -0.1), texture='assets/textures/shotgun_receiver.png', color=color.black) # Recámara o parte superior del cuerpo de la escopeta.
+Entity(parent=shotgun, model='cube', scale=(0.10, 0.1, 0.25), position=(0, -0.05, 0.2), texture='assets/textures/shotgun_forend.png', color=color.black) # Guardamanos/Bomba de la escopeta.
+Entity(parent=shotgun, model='cube', scale=(0.12, 0.3, 0.15), position=(0, -0.2, -0.4), texture='assets/textures/prueba.jpg', color=color.green) # Culata y empuñadura de la escopeta.
+Entity(parent=shotgun, model='cube', scale=(0.10, 0.05, 0.2), position=(-0.04, 0.1, -0.1), texture='assets/textures/prueba.jpg', color=color.green) # Recámara o parte superior del cuerpo de la escopeta.
 Entity(parent=shotgun, model='cylinder', scale=(0.05, 0.05, 0.7), position=(0, -0.08, 0.3), rotation_x=90, texture='assets/textures/shotgun_magtube.png', color=color.white) # Cargador tubular bajo el cañón de la escopeta.
-Entity(parent=shotgun, model='cube', scale=(0.02, 0.03, 0.05), position=(0, 0.08, 0.45), texture='assets/textures/shotgun_sight_front.png', color=color.red) # Alza y mira delantera de la escopeta.
-Entity(parent=shotgun, model='cube', scale=(0.05, 0.01, 0.05), position=(-0.1, 0.1, -0.4), texture='assets/textures/shotgun_sight_rear.png', color=color.yellow) # Alza y mira trasera de la escopeta.
+Entity(parent=shotgun, model='cube', scale=(0.02, 0.03, 0.05), position=(0, 0.06, 0.45), texture='assets/textures/shotgun_sight_front.png', color=color.red) # Alza y mira delantera de la escopeta.
+Entity(parent=shotgun, model='cube', scale=(0.04, 0.01, 0.05), position=(-0.06, 0.1, -0.4), texture='assets/textures/shotgun_sight_rear.png', color=color.black) # Alza y mira trasera de la escopeta.
 shotgun.disable() # La escopeta está deshabilitada por defecto al inicio.
 
 crosshair = Entity(parent=camera.ui, model='circle', scale=0.008, color=color.red) # La mira en el centro de la pantalla.

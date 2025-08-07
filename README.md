@@ -28,3 +28,6 @@
 
 9---03/08/2025
     Esta Novena version cambie la apariencia de las 2 primeras armas ya que presentaba el problemas de las texturas, descubri que mi codigo no cargaba los modelos de las armas, sino que los modelos eran estructuras como de cubos o partes como un aspecto de minecraft, lo que hice fue cargar imagnes como textura en las partes principales de la armas y modificar el aspecto de la arma mediante el Scale y position, que son la posicion del arma y que tamaño tiene cada pieza del arma asi mejorando el aspecto del arma para que se vea mejor.
+
+10--07/08/2025
+    En esta ultima version ya esta la apariencia de las 3 armas actualizadas, al igual que las dos armas anteriores para darle un aspecto mejor al juego las 3 armas tiene un color diferente en el primer nivel el arma es color negro con unas llamas azules, en el segundo nivel tiene una textura diferente en color rojo y en el ultimo nivel tiene un fondo negro con llamas verdes.
